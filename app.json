@@ -1,0 +1,25 @@
+{
+  "expo": {
+    "name": "像素萌妹 PixelMe",
+    "slug": "pixel-me-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#fff0f5"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.pixelme.app"
+    },
+    "android": {
+      "package": "com.pixelme.app"
+    },
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}
