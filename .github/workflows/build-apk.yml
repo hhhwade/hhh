@@ -17,8 +17,18 @@ jobs:
         with:
           node-version: 18
 
+      - name: Check Directory Structure
+        run: ls -la && find . -maxdepth 2
+
       - name: Install Dependencies
-        run: npm install
+        run: |
+          if [ -f "package.json" ]; then
+            npm install
+          elif [ -d "pixel-me-app" ]; then
+            cd pixel-me-app && npm install
+          else
+            echo "Error: package.json not found!" && exit 1
+          fi
 
       - name: Setup Expo
         uses: expo/expo-github-action@v8
@@ -28,4 +38,8 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: Build Android APK via EAS
-        run: eas build --platform android --profile preview --non-interactive
+        run: |
+          if [ -d "pixel-me-app" ]; then
+            cd pixel-me-app
+          fi
+          eas build --platform android --profile preview --non-interactive
