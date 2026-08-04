@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
       - name: Install Dependencies
         run: npm install
@@ -23,7 +23,8 @@ jobs:
       - name: Install EAS CLI Globally
         run: npm install -g eas-cli
 
+      - name: Authenticate EAS with Token
+        run: eas whoami || npx eas-cli login --token ${{ secrets.EXPO_TOKEN }}
+
       - name: Build Android APK via EAS
-        env:
-          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
         run: eas build --platform android --profile preview --non-interactive
